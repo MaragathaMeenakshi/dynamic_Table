@@ -15,6 +15,7 @@ document.getElementById("dropdown").addEventListener("change", function () {
 
   // dragableRow();
   // sortArray(1);
+  searchBar("meenakshi");
 });
 
 document.getElementById("dropdown").dispatchEvent(new Event("change"));
@@ -26,7 +27,20 @@ document.getElementById("sort").addEventListener("change", function () {
   displayTableContent(rowPerPage, 1, 0);
 });
 
-function displayTableContent(rowPerPage, pageNumber, startIndex) {
+document
+  .getElementById("search_controller")
+  .addEventListener("input", function (event) {
+    let rowPerPage = document.getElementById("dropdown").value;
+    let searchedValue = searchBar(event.target.value);
+    displayTableContent(rowPerPage, 1, 0, searchedValue);
+  });
+
+function displayTableContent(
+  rowPerPage,
+  pageNumber,
+  startIndex,
+  searchedValue
+) {
   let table = document.getElementById("table");
   let tbody = document.getElementById("tbody");
   tbody.innerHTML = "";
@@ -50,7 +64,7 @@ function displayTableContent(rowPerPage, pageNumber, startIndex) {
     for (let j = 0; j < 4; j++) {
       let td = document.createElement("td");
       td.setAttribute("id", `td${i}${j}`);
-      td.innerText = data[i][j];
+      td.innerText = searchedValue ? searchedValue[i][j] : data[i][j];
       tr.appendChild(td);
     }
     tbody.appendChild(tr);
@@ -116,4 +130,12 @@ function sortArray(value) {
     console.log("        \n");
   });
   console.log(data);
+}
+
+function searchBar(value) {
+  let searchValue = data.filter((row) => {
+    return row.some((colVal) => colVal == value);
+  });
+  console.log(searchValue);
+  return searchValue;
 }
