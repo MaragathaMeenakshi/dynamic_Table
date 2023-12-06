@@ -1,0 +1,35 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  th{
+    background-color: #181818;
+    color: #dddddd;
+  }
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+
+  #pagination {
+    display: inline-block;
+  }
+  
+  #pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  a:hover{
+    background-color: #d9d4f5;
+  }

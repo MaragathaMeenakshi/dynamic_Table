@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Table</title>
+    <link rel="stylesheet" href="style.css"></link>
+  </head>
+  <body>
+    <h1>Data Table</h1> <br></br>
+    <label for="dropdown">Row Per Page:</label>
+    <select id="dropdown">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+    </select>
+    <label for="sort">Sort By</label>
+    <select id="sort">
+      <option value="None">None</option>
+      <option value="1">Name</option>
+      <option value="2">Age</option>
+      <option value="3">City</option>
+  </select> <br></br>
+  <div class="dataTables_filter">
+        <label>Search:
+            <input type="search" class="form-control" placeholder="Search..." aria-controls="myDataTable">
+        </label> <br></br>
+    </div>
+    <table id="table">
+      <tr>
+        <th>S.No</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>City</th>
+      </tr>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div id="pagination">
+
+    </div>
+    <script type="text/javascript"  src="data.json"></script>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
