@@ -1,35 +1,127 @@
 table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-  th{
-    background-color: #181818;
-    color: #dddddd;
-  }
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
 
-  #pagination {
-    display: inline-block;
-  }
-  
-  #pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-  }
-  
-  a:hover{
-    background-color: #d9d4f5;
-  }
+th {
+  background-color: #181818;
+  color: #dddddd;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+#pagination {
+  grid-column: 0;
+  grid-row: 0;
+}
+
+#pagination a {
+  /* color: black; */
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+#pagination a.active {
+  background-color: #4caf50 !important;
+  color: white;
+}
+
+#pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+/* td[id$="4"] {
+  background-color: #ccc;
+  color: #333;
+} */
+.dragging {
+  border: 5px solid #0f0c0c;
+  background-color: #d9d4f5;
+  opacity: 1 !important;
+}
+.dragColumn {
+  border: 5px solid #0f0c0c;
+  background-color: #d9d4f5;
+  cursor: grab;
+}
+.dragColumn:active {
+  cursor: grabbing;
+}
+.buttonCss {
+  padding: 6px 14px;
+  margin: 2px;
+  font-family: "Roboto", sans-serif;
+  border-radius: 6px;
+  border: none;
+  color: #fff;
+  background: linear-gradient(180deg, #4b90f791 0%, #367af6 100%);
+  background-origin: border-box;
+  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
+    inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+}
+
+.buttonCss:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(124, 124, 124, 0.2),
+    0px 0.5px 1.5px rgba(54, 122, 246, 0.25),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}
+
+#popupForm {
+  display: none;
+  box-sizing: border-box;
+  width: 50%;
+  background-color: #ffffff;
+  padding: 5%;
+  position: absolute;
+  left: 30%;
+  top: 17%;
+  margin-left: -202px;
+  border-radius: 10%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+input[type="text"] {
+  margin: 12px 12px 2px 2px;
+  padding: 2px;
+  width: 50%;
+}
+#form label {
+  display: inline-block;
+  margin: 2px;
+  padding: 12px;
+  width: 20%;
+}
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.1;
+}
+.grid {
+  width: 100%;
+  display: grid;
+}
+#columnCustom {
+  grid-column: 2;
+  grid-row: 0;
+  display: grid;
+  grid-template-columns: 200px 100%;
+  padding: 2%;
+}
+
+#coulmn {
+  grid-row: 0;
+  grid-column: 2;
+  width: 100%;
+}
+
+/* .cursor {
+  cursor: move;
+} */

@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dynamic Table</title>
-    <link rel="stylesheet" href="style.css"></link>
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Table</title>
+  <link rel="stylesheet" href="style.css">
+  </link>
+</head>
+
+<body>
+  <div id="dataTable">
     <h1>Data Table</h1> <br></br>
     <label for="dropdown">Row Per Page:</label>
     <select id="dropdown">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
     </select>
     <label for="sort">Sort By</label>
     <select id="sort">
@@ -22,25 +25,51 @@
       <option value="1">Name</option>
       <option value="2">Age</option>
       <option value="3">City</option>
-  </select> <br></br>
-  <div class="dataTables_filter">
-        <label>Search:
-            <input type="search" id="search_controller" placeholder="Search..." >
-        </label> <br></br>
+    </select> <br></br>
+    <div class="dataTables_filter">
+      <label>Search:
+        <input type="search" id="search_controller" placeholder="Search...">
+      </label> <br></br>
     </div>
     <table id="table">
-      <tr>
-        <th>S.No</th>
-        <th>Name</th>
-        <th>Age</th>
-        <th>City</th>
+      <tr id="thead">
+        <th id="0"  draggable="true" >S.No</th>
+        <th id="1"  draggable="true">Name</th>
+        <th id="2"  draggable="true">Age</th>
+        <th id="3" draggable="true">City</th>
+        <th id="4"  draggable="true">Actions</th>
       </tr>
       <tbody id="tbody"></tbody>
     </table>
-    <div id="pagination">
-
+    <div class="grid">
+      <div id="pagination"></div>
+      <div id="columnCustom">
+        <div for="columnCustom">Customize Your Column</div>
+        <div id="coulmn">
+          <label ><input type="checkbox" value="0" checked>Serial No</input> </label>
+          <label ><input type="checkbox" value="1" checked>Name</label>
+          <label ><input type="checkbox" value="2"checked>Age</label>
+          <label><input type="checkbox"  value="3" checked>City</label>
+        </div>
+      </div>
     </div>
-    <script type="text/javascript"  src="data.json"></script>
-    <script type="module" src="script.js"></script>
-  </body>
+  </div>
+  <div class="editPopUp" id="popupForm">
+    <form id="form">
+      <h2>Edit Form</h2>
+      <label>Serial No</label>
+      <input type="text" id="sno" placeholder="Serial No" name="Sno">
+      <label>Name</label>
+      <input type="text" id="name" placeholder="Name" name="name">
+      <label>Age</label>
+      <input type="text" id="age" placeholder="Age" name="age">
+      <label>City</label>
+      <input type="text" id="city" placeholder="City" name="city"><br></br>
+      <button type="submit" id="submit" class="buttonCss">Save</button>
+      <button type="button" id="closeButton" class="buttonCss">Close</button>
+    </form>
+  </div>
+  <script type="module" src="script.js"></script>
+</body>
+
 </html>
