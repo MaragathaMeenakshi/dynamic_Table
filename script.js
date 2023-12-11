@@ -69,7 +69,8 @@ function displayTableContent(rowPerPage, pageNumber, startIndex, searchedValue) 
     });
     tr.addEventListener("drop", function (event) {
       console.log(event);
-      drop(event, `tr${i}`);
+      let data = event.dataTransfer.getData("text/plain");
+      drop(data, `tr${i}`, 'tbody');
     });
 
     for (let j = 0; j < 4; j++) {
@@ -139,28 +140,10 @@ function dragableRow(event) {
   event.target.classList.add("dragging");
 }
 
-function drop(event, position) {
-  event.preventDefault();
-  console.log(event);
-  let data = event.dataTransfer.getData("text/plain");
+function drop(data, position, parentId) {
   // let receivedArray = JSON.parse(data);
-
   console.log("Dropped data:", data);
-  let parent = document.getElementById("tbody");
-
-  // if (Array.isArray(receivedArray)) {
-  //   console.log("element1");
-
-  //   for (let index = 1; index < receivedArray.length; i++) {
-  //     let element1 = document.getElementById(`${receivedArray[index]}`);
-  //     console.log(value[value.length - 1])
-  //     // let element2 = document.getElementById(`${event.target.value[event.target.value.length - 1]}`);
-  //     console.log(element1);
-  //     // console.log(element2);
-
-  //     // parent.insertBefore(element1, element2);
-  //   }
-  // }
+  let parent = document.getElementById(parentId);
   let element1 = document.getElementById(`${data}`);
   let element2 = document.getElementById(`${position}`);
   console.log(element1);
@@ -245,6 +228,9 @@ document.getElementById('form').addEventListener('submit', function (event) {
   document.getElementById("popupForm").style.display = "none";
 })
 
+document.addEventListener('DOMContentLoaded', function () {
+
+})
 document.querySelectorAll('input[type="checkbox"]').forEach(function (checkbox) {
   checkbox.addEventListener('change', function (event) {
     console.log(event)
@@ -280,9 +266,30 @@ document.querySelectorAll('input[type="checkbox"]').forEach(function (checkbox) 
   });
 });
 
-for (let index = 0; index < 4; index++) {
-  document.getElementById(`${index}`).addEventListener('dragstart', function (event) {
-    let col = document.querySelectorAll(`[id$="${index}"]:not([id^="tr"]):not([id^="editButton"]):not([id^="deleteButton"])`);
+
+const elements = document.getElementsByTagName('th');
+console.log(elements)
+for (let i = 0; i < elements.length; i++) {
+  elements[i].addEventListener('drop', function (event) {
+    console.log(event);
+    let data = event.dataTransfer.getData("text/plain");
+    let retrievedData = JSON.parse(data);
+    retrievedData.forEach((data, index) => {
+      if (index == 0) {
+        drop(data, event.target.id, 'thead')
+      }
+      else {
+        let element = document.getElementById(`td${index - 1}${event.target.id}`);
+        element.setAttribute('draggable', true)
+        drop(data, `td${index - 1}${event.target.id}`, `tr${index - 1}`);
+      }
+
+      document.getElementById(`${data}`).classList.remove('draggable');
+    })
+  });
+
+  elements[i].addEventListener('dragstart', function (event) {
+    let col = document.querySelectorAll(`[id$="${i}"]:not([id^="tr"]):not([id^="editButton"]):not([id^="deleteButton"])`);
     let colarray = [];
     col.forEach((element, index) => {
       element.setAttribute("draggable", true);
@@ -291,17 +298,11 @@ for (let index = 0; index < 4; index++) {
       console.log(colarray)
     });
     event.dataTransfer.setData("text/plain", JSON.stringify(colarray))
-  })
+  });
 
-  document.getElementById(`${index}`).addEventListener('drop', function (event) {
+  elements[i].addEventListener('dragover', function (event) {
     event.preventDefault();
-    drop(event);
-    // let parent = document.getElementById("tbody");
-    // let element1 = document.getElementById(`${data}`);
-    // let element2 = document.getElementById(`${position}`);
-    // console.log(element1);
-    // console.log(element2);
+    console.log(event.target.id)
 
-    // parent.insertBefore(element1, element2);
-  })
+  });
 }

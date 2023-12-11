@@ -14,7 +14,14 @@ th {
 th {
   background-color: #181818;
   color: #dddddd;
+  cursor: grab;
 }
+
+th:active,
+td:active {
+  cursor: grabbing !important;
+}
+
 tr:nth-child(even) {
   background-color: #dddddd;
 }
@@ -125,3 +132,6 @@ input[type="text"] {
 /* .cursor {
   cursor: move;
 } */
+.draggable {
+  background-color: #414141;
+}
